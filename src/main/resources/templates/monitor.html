@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registros de Subida</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/Estilo.css" th:href="@{/css/Estilo.css}">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <h2>BIENVENIDO</h2>
+        <h3>Menú</h3>
+        <div class="opciones">
+            <a href="/">Regresar al inicio</a>
+        </div>
+        <div class="cerrar">
+            <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Cerrar sesión</a>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <h1>Registros de Subida</h1>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Dirección IP</th>
+                    <th>Fecha de Subida</th>
+                </tr>
+            </thead>
+            <tbody id="data-container">
+                <!-- Inicialmente muestra un mensaje de carga -->
+                <tr>
+                    <td colspan="3">Cargando...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>

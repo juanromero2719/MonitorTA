@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio</title>
+        <link rel="stylesheet" href="static/css/Estilo.css" th:href="@{/css/Estilo.css}">
+    </head>
+    <body>
+        <div class="sidebar" id="sidebar">
+            <h2>BIENVENIDO</h2>
+            <h3>Menú</h3>
+                <div class="opciones">
+                    <a th:href="@{/monitor}">Monitor</a>
+                </div>
+                <div class="cerrar">
+                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Cerrar sesión</a>
+                </div>        
+        </div>
+
+        <div class="main-content">
+            <div class="image-container">
+                <img alt="Logo de la página" class="Imagen_inicio" th:src="@{/img/Logo.png}">
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>Registro de usuarios</title>
+        <link rel="stylesheet" href="static/css/Estilo.css" th:href="@{/css/Estilo.css}">
+        </head>
+        
+        <body>
+            
+            <section class="container">
+                
+                <section class="left-section">
+                    <div th:if=${param.exito}>
+			<div class="alert alert-info">Se ha registrado exitosamente a la aplicación</div>
+                    </div>
+                    
+                    <h1>Regístrate</h1>
+                    
+                    <form th:action="@{/registro}" method="post" th:object="${usuario}" class="register-form">
+                        <fieldset><!-- comment -->
+                            <label for="nombre">Nombre : </label> 
+                            <input id="nombre" type="text" th:field="*{nombre}" required autofocus="autofocus">
+
+                            <label for="usuario">Usuario : </label> 
+                            <input id="usuario" type="text"  th:field="*{usuario}" required autofocus="autofocus">
+
+                            <label for="email">Email : </label> 
+                            <input id="email" type="email"  th:field="*{email}" required autofocus="autofocus">
+
+                            <label for="password">Contraseña: </label> 
+                            <input type="password" id="password"  th:field="*{password}" required autofocus="autofocus">
+
+                            <button type="submit">Registrar</button>
+                        </fieldset>
+                    </form>
+                    <span>Si estas registrado <a th:href="@{/login}">inicia sesión aqui</a></span>
+                </section>
+                <section class="right-section">
+                    <img alt="Logo de la página" class="Imagen" th:src="@{/img/Logo.png}">
+                </section>
+        </body>
+</html>
+

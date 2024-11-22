@@ -1,0 +1,287 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    background-color: #cfd7ea ;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.left-section, .right-section {
+    flex: 1;
+    padding: 20px;
+    justify-content: center;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.left-section {
+    background-color: #f0f0f0;
+    position: relative;
+    text-align: center;
+    flex-direction: column;
+}
+
+.right-section {
+    background-color: #cfd7ea ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    padding: 0;
+}
+
+.login-form {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    align-items: center;
+}
+
+.register-form{
+    padding: 20px;
+    align-items: center;
+    text-align: justify;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    width: 70%;
+    padding: 10px;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    width: 70%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 30%;
+    align-items: center;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.Imagen {
+    width: 90%;
+    height: 75%;
+    max-width: 70%;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .Imagen {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.alert-info{
+    color: red;
+    text-align: 50px;
+}
+.alert-danger{
+    color: red;
+}
+
+.register-label{
+    align-content: center;
+}
+
+.sidebar {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Encabezado, contenido dinámico, footer */
+    height: 100vh; /* Ocupa todo el alto de la pantalla */
+    background-color: #1E90FF;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box; /* Incluye padding en las dimensiones totales */
+}
+
+.sidebar h2, .sidebar h3 {
+    margin: 0;
+    text-align: center;
+}
+
+.opciones{
+    position: absolute;
+    top: 9%;
+    left: 1%;
+    flex-direction: column;
+}
+
+.cerrar{
+    position: absolute;
+    bottom: 1%;
+}
+
+.logout a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #ff4d4d;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    width: 100%; /* Asegura que el botón ocupe todo el ancho del contenedor */
+}
+
+.logout a:hover {
+    background-color: #cc0000;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+.h1{
+    font-size:5em;
+    text-align: center;
+}
+
+.table-container {
+    flex-grow: 1; /* Esto hace que el contenedor de la tabla ocupe todo el espacio disponible */
+    overflow: auto; /* Para que la tabla sea desplazable si hay demasiados registros */
+    padding: 20px;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-size: 16px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.styled-table thead tr {
+    background-color: #1E90FF;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #1E90FF;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 50px;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    position: relative;
+}
+
+.modal-content .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content .close:hover,
+.modal-content .close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .styled-table {
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}
