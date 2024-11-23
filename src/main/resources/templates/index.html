@@ -11,8 +11,12 @@
             <h2>BIENVENIDO</h2>
             <h3>Menú</h3>
                 <div class="opciones">
-                    <a th:href="@{/monitor}">Monitor</a>
+                    <ul>
+                        <li><a th:href="@{/monitor}">Monitor</a></li>
+                        <li><a th:href="@{/video}">Videos</a></li>
+                    </ul>
                 </div>
+               
                 <div class="cerrar">
                     <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Cerrar sesión</a>
                 </div>        

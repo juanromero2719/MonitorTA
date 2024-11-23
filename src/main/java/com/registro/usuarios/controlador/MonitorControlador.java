@@ -6,7 +6,9 @@ package com.registro.usuarios.controlador;
 
 import com.registro.usuarios.modelo.Logs;
 import com.registro.usuarios.servicio.LogsServicio;
-import java.util.List;
+import componentes.VideoCache;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,11 +29,20 @@ public class MonitorControlador {
     private static final Logger logger = LoggerFactory.getLogger(MonitorControlador.class);
     
     @Autowired
+    private VideoCache videoCache;
+
+    
+    @Autowired
     private LogsServicio logsServicio;
 
     @GetMapping("/monitor")
     public String mostrarLogs(Model model) {
         return "monitor"; 
+    }
+    
+    @GetMapping("/video")
+        public String mostrarVideos(Model model) {
+        return "videos"; 
     }
     
     @GetMapping("/log-detalle")
@@ -40,6 +51,12 @@ public class MonitorControlador {
         model.addAttribute("log", log);
         return "log-detalle";
     }
+    
+    @GetMapping("/cache/data")
+    public Map<String, String> getCacheData() {
+        return videoCache.getAll();
+    }
+
     
     
 }

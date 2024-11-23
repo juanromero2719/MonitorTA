@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio</title>
+        <link rel="stylesheet" href="static/css/Estilo.css" th:href="@{/css/Estilo.css}">
+    </head>
+    <body>
+        <div class="sidebar" id="sidebar">
+            <h2>BIENVENIDO</h2>
+            <h3>Menú</h3>
+                <div class="opciones">
+                    <a href="/">Regresar al inicio</a>
+                </div>
+                <div class="cerrar">
+                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Cerrar sesión</a>
+                </div>        
+        </div>
+
+        <div class="main-content">
+        <h1>Lista de Videos</h1>
+        <div id="videos"></div>
+
+        <h2>Contenido de la Caché</h2>
+        <div id="cache-content"></div>
+
+            <script>
+                fetch('/videos')
+                    .then(response => response.json())
+                    .then(videos => {
+                        const videoContainer = document.getElementById('videos');
+                        videos.forEach(videoUrl => {
+                            const videoElement = document.createElement('video');
+                            videoElement.src = videoUrl;
+                            videoElement.controls = true;
+                            videoElement.width = 640;
+                            videoElement.height = 360;
+                            videoContainer.appendChild(videoElement);
+                        });
+                    });
+            </script>
+        </div>
+    </body>
+</html>
