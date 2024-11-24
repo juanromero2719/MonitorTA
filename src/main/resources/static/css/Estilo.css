@@ -7,6 +7,12 @@ body {
     height: 100vh;
 }
 
+.title-container{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .container {
     display: flex;
     width: 100%;
@@ -170,6 +176,7 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .image-container {

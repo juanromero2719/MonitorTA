@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.registro.usuarios.controlador.dto.UsuarioRegistroDTO;
-import com.registro.usuarios.servicio.UsuarioServicio;
+import com.registro.usuarios.servicio.IUsuarioServicio;
 
 @Controller
 @RequestMapping("/registro")
 public class RegistroUsuarioControlador {
 
-	private UsuarioServicio usuarioServicio;
+	private IUsuarioServicio usuarioServicio;
 
-	public RegistroUsuarioControlador(UsuarioServicio usuarioServicio) {
+	public RegistroUsuarioControlador(IUsuarioServicio usuarioServicio) {
 		super();
 		this.usuarioServicio = usuarioServicio;
 	}

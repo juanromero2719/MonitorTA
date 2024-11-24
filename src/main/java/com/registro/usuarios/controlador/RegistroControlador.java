@@ -5,13 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.registro.usuarios.servicio.UsuarioServicio;
+import com.registro.usuarios.servicio.IUsuarioServicio;
 
 @Controller
 public class RegistroControlador {
 
 	@Autowired
-	private UsuarioServicio servicio;
+	private IUsuarioServicio servicio;
 	
 	@GetMapping("/login")
 	public String iniciarSesion() {

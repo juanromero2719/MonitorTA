@@ -5,10 +5,10 @@
 package com.registro.usuarios.servicio;
 
 import com.registro.usuarios.modelo.Logs;
-import com.registro.usuarios.repositorio.LogsRepositorio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.registro.usuarios.repositorio.ILogsRepositorio;
 
 /**
  *
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class LogsServicio {
     
     @Autowired
-    private LogsRepositorio logsRepositorio;
+    private ILogsRepositorio logsRepositorio;
 
     public List<Logs> obtenerTodosLosRegistros() {
         return logsRepositorio.findAll();

@@ -10,18 +10,18 @@ import org.springframework.stereotype.Service;
 
 import com.registro.usuarios.controlador.dto.UsuarioRegistroDTO;
 import com.registro.usuarios.modelo.Usuario;
-import com.registro.usuarios.repositorio.UsuarioRepositorio;
+import com.registro.usuarios.repositorio.IUsuarioRepositorio;
 import java.util.ArrayList;
 
 @Service
-public class UsuarioServicioImpl implements UsuarioServicio {
+public class UsuarioServicioImpl implements IUsuarioServicio{
 
-    private UsuarioRepositorio usuarioRepositorio;
+    private IUsuarioRepositorio usuarioRepositorio;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public UsuarioServicioImpl(UsuarioRepositorio usuarioRepositorio) {
+    public UsuarioServicioImpl(IUsuarioRepositorio usuarioRepositorio) {
         super();
         this.usuarioRepositorio = usuarioRepositorio;
     }
@@ -52,5 +52,9 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     @Override
     public List<Usuario> listarUsuarios() {
         return usuarioRepositorio.findAll();
+    }
+    
+    public Usuario findByUsername(String username) {
+        return usuarioRepositorio.findByUsername(username);
     }
 }

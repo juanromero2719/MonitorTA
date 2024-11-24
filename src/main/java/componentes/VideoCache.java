@@ -22,7 +22,6 @@ public class VideoCache {
     public VideoCache(int maxSize) {
         this.maxSize = maxSize;
 
-        // Configurar una LinkedHashMap con eliminación basada en capacidad
         this.cache = new LinkedHashMap<String, String>(maxSize, 0.75f, true) {
             @Override
             protected boolean removeEldestEntry(Map.Entry<String, String> eldest) {

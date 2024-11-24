@@ -11,14 +11,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.registro.usuarios.servicio.UsuarioServicio;
+import com.registro.usuarios.servicio.IUsuarioServicio;
+import componentes.CustomLogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
+    
+        private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
+        
+        public SecurityConfiguration(CustomLogoutSuccessHandler customLogoutSuccessHandler) {
+        this.customLogoutSuccessHandler = customLogoutSuccessHandler;
+        }
 
 	@Autowired
-	private UsuarioServicio usuarioServicio;
+	private IUsuarioServicio usuarioServicio;
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -56,6 +63,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.invalidateHttpSession(true)
 		.clearAuthentication(true)
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessHandler(customLogoutSuccessHandler)
 		.logoutSuccessUrl("/login?logout")
 		.permitAll();
 	}

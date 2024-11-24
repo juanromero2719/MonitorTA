@@ -1,37 +1,41 @@
-// Función para cargar los datos mediante AJAX
-async function fetchLogs() {
-    const container = document.getElementById("data-container");
 
-    // Mostrar un estado de "cargando" inicialmente
-    container.innerHTML = `<tr><td colspan="3">Cargando...</td></tr>`;
+    fetch('/api/user-logs')
+        .then(response => response.json())
+        .then(data => {
+            const dataContainer = document.getElementById('data-container');
+            dataContainer.innerHTML = ''; // Limpiar contenido existente
 
-    try {
-        // Realizar la petición a tu endpoint
-        const response = await fetch('/api/logs');
+            if (data.length === 0) {
+                dataContainer.innerHTML = '<tr><td colspan="2">No se encontraron registros.</td></tr>';
+            } else {
+                data.forEach(log => {
+                    const row = document.createElement('tr');
+                    const ipCell = document.createElement('td');
+                    const dateCell = document.createElement('td');
 
-        // Manejar respuestas que no son 200 OK
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status} ${response.statusText}`);
-        }
+                    const parts = log.split('/');
+                    const archivo = parts[parts.length - 1]; // Nombre del archivo
 
-        // Parsear los datos a JSON
-        const logs = await response.json();
+                    const archivoParts = archivo.replace('registro_', '').replace('.txt', '').split('_');
+                    const ip = archivoParts[0]; // Primera parte después de "registro_"
+                    const fecha = archivoParts.slice(1).join(' '); // Resto de las partes como fecha y hora
 
-        // Renderizar los datos
-        container.innerHTML = logs.map(log => `
-            <tr>
-                <td>${log.usuario ? log.usuario.nombre : 'Sin Usuario'}</td>
-                <td>${log.direccionIP || 'N/A'}</td>
-                <td>
-                    <a href="/log-detalle?id=${log.idRegistro}">${log.fechaSubida}</a>
-                </td>
-            </tr>
-        `).join('');
-    } catch (error) {
-        // Mostrar un mensaje de error en la tabla
-        container.innerHTML = `<tr><td colspan="3">Error al cargar los datos: ${error.message}</td></tr>`;
-    }
-}
+                    ipCell.textContent = ip;
 
-// Llamar a la función después de que la página se haya cargado
-document.addEventListener("DOMContentLoaded", fetchLogs);
+                    const rutaNormalizada = log.replace(/\\/g, '/').replace(/\/logs\/logs\//, '/logs/');
+                    const link = document.createElement('a');
+                    link.href = `/log-detalle?archivo=${encodeURIComponent(rutaNormalizada)}`;
+                    link.textContent = fecha;
+                    dateCell.appendChild(link);
+
+                    row.appendChild(ipCell);
+                    row.appendChild(dateCell);
+                    dataContainer.appendChild(row);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener los registros:', error);
+            document.getElementById('data-container').innerHTML =
+                '<tr><td colspan="2">Error al cargar los registros.</td></tr>';
+        });

@@ -17,26 +17,25 @@
             <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Cerrar sesión</a>
         </div>
     </div>
-
+   
     <div class="table-container">
-        <h1>Registros de Subida</h1>
+        <h1>Detalle del Registro</h1>
+        <a th:href="'/log-detalle/pdf?archivo=' + ${archivo}" class="button">Descargar como PDF</a>
         <table class="styled-table">
             <thead>
                 <tr>
-                    <th>Campo</th>
-                    <th>Valor</th>
+                    <th><h3 th:text="'Archivo: ' + ${archivo}"></h3></th>
                 </tr>
             </thead>
             <tbody id="data-container">
                 <!-- Inicialmente muestra un mensaje de carga -->
                 <tr>
-                    <td colspan="2">Cargando    ...</td>
+                     <th><pre th:text="${contenido}"></pre></th>
                 </tr>
             </tbody>
         </table>
     </div>
 
 
-    <script th:src="@{/js/detalle.js}"></script>
 </body>
 </html>

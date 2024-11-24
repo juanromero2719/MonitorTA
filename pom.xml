@@ -45,12 +45,6 @@
 		</dependency>
 
 		<dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-devtools</artifactId>
-                    <scope>runtime</scope>
-                    <optional>true</optional>
-		</dependency>
-		<dependency>
                     <groupId>org.postgresql</groupId>
                     <artifactId>postgresql</artifactId>
                     <scope>runtime</scope>
@@ -76,6 +70,25 @@
                     <groupId>com.google.guava</groupId>
                     <artifactId>guava</artifactId>
                     <version>31.1-jre</version>
+                </dependency>
+                
+                <dependency>
+                    <groupId>com.google.cloud.sql</groupId>
+                    <artifactId>postgres-socket-factory</artifactId>
+                    <version>1.11.0</version>
+                </dependency>
+                
+                <dependency>
+                    <groupId>com.zaxxer</groupId>
+                    <artifactId>HikariCP</artifactId>
+                    <version>5.0.1</version>
+                </dependency>
+                
+                <dependency>
+                    <groupId>com.itextpdf</groupId>
+                    <artifactId>itext7-core</artifactId>
+                    <version>7.0.4</version>
+                    <type>pom</type>
                 </dependency>
 
 	 <dependency>

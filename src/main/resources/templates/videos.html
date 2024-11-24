@@ -19,27 +19,77 @@
         </div>
 
         <div class="main-content">
-        <h1>Lista de Videos</h1>
-        <div id="videos"></div>
-
-        <h2>Contenido de la Caché</h2>
-        <div id="cache-content"></div>
+            <div class="title-container">
+                <h1>Lista de Videos</h1>
+            </div>
+             
+             
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Nombre del Video</th>
+                    <th>Fecha de Subida</th>
+                    <th>Reproductor</th>
+                </tr>
+            </thead>
+            <tbody id="video-data-container">
+                <!-- Aquí se agregarán los videos -->
+            </tbody>
+        </table>
 
             <script>
-                fetch('/videos')
-                    .then(response => response.json())
-                    .then(videos => {
-                        const videoContainer = document.getElementById('videos');
-                        videos.forEach(videoUrl => {
+            // Obtener videos desde el endpoint
+            fetch('/videos')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('video-data-container');
+                    container.innerHTML = ''; // Limpiar contenido existente
+
+                    if (data.length === 0) {
+                        container.innerHTML = '<tr><td colspan="3">No se encontraron videos.</td></tr>';
+                    } else {
+                        data.forEach(videoUrl => {
+                            const row = document.createElement('tr');
+                            const nameCell = document.createElement('td');
+                            const dateCell = document.createElement('td');
+                            const playerCell = document.createElement('td');
+
+                            // Extraer el nombre del archivo y la fecha desde la URL
+                            const parts = videoUrl.split('/');
+                            const archivo = parts[parts.length - 1]; // Ejemplo: "192.168.20.24_2024-11-23_22-37-02.mp4"
+
+                            const archivoParts = archivo.replace('.mp4', '').split('_');
+                            const nombreVideo = archivoParts[0]; // IP del video
+                            const fechaSubida = archivoParts.slice(1).join(' '); // Fecha después de "_"
+
+                            // Crear un reproductor de video
                             const videoElement = document.createElement('video');
-                            videoElement.src = videoUrl;
+                            videoElement.src = videoUrl; // URL del video
                             videoElement.controls = true;
-                            videoElement.width = 640;
-                            videoElement.height = 360;
-                            videoContainer.appendChild(videoElement);
+                            videoElement.width = 320; // Tamaño ajustable según diseño
+                            videoElement.height = 180;
+
+                            // Asignar datos a las celdas
+                            nameCell.textContent = nombreVideo;
+                            dateCell.textContent = fechaSubida;
+                            playerCell.appendChild(videoElement);
+
+                            // Agregar celdas a la fila
+                            row.appendChild(nameCell);
+                            row.appendChild(dateCell);
+                            row.appendChild(playerCell);
+
+                            // Agregar fila a la tabla
+                            container.appendChild(row);
                         });
-                    });
-            </script>
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al obtener los videos:', error);
+                    document.getElementById('video-data-container').innerHTML =
+                        '<tr><td colspan="3">Error al cargar los videos.</td></tr>';
+                });
+        </script>
         </div>
     </body>
 </html>

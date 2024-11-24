@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface LogsRepositorio extends JpaRepository<Logs, Long>{
+public interface ILogsRepositorio extends JpaRepository<Logs, Long>{
 }
